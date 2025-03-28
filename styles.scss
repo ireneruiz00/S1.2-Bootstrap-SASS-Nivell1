@@ -1,0 +1,430 @@
+$primary-color: #344CB7;
+$secondary-color: salmon;
+$text-color: #3D3D3D;
+$light-gray: #9AA6B2;
+$white: #ffffff;
+$dark-bg: #09122C;
+$btn-shadow: 3px 3px 10px #c5c2c2;
+$small-font-size: 16px;
+
+@mixin flex($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin font-size-responsive {
+    font-size: 20px;
+  
+    @media (max-width: 724px) {
+      font-size: 18px;
+    }
+}
+
+@mixin text-margin-responsive{
+    margin: 3% 30%;
+    @media (max-width: 724px) {
+        margin: 1%;
+      }
+}
+
+@mixin button($background, $color) {
+    border: none;
+    border-radius: 3px;
+    padding: 15px;
+    font-weight: bold;
+    background: $background;
+    color: $color;
+    font-size: $small-font-size;
+    cursor: pointer;
+    &:hover {
+        background: $white;
+        color: $background;
+        border: 1px solid $background;
+    }
+}
+
+body, html {
+    font-family: 'Arial', sans-serif;
+    @include font-size-responsive();
+    color: #181C14;
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+p {
+    color: $light-gray;
+}
+
+.text-center {
+    text-align: center;
+}
+
+a:hover {
+    color: $secondary-color !important;
+}
+
+.intro{
+    @include text-margin-responsive();
+}
+
+.btn-naranja {
+    @include button($secondary-color, $white);
+    padding: 0.6rem 0.8rem;
+    font-weight: lighter;
+}
+
+.btn-firefox {
+    @include button($light-gray, $text-color);
+    &:hover {
+        background: $white;
+        color: $text-color;
+        border: 1px solid $text-color;
+    }
+}
+
+.btn-azul{
+    @include button($primary-color, $white);
+    box-shadow: $btn-shadow;
+}
+
+@media (max-width: 724px) {
+    .btn-azul, .btn-firefox {
+        width: 50%;
+        margin-bottom: 10px;
+    }
+}
+
+header {
+    margin: 2% 15%;
+    @include flex(row, space-between, center);
+
+    .menu-hamburguer {
+        display: none;
+    }
+
+    .menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        @include flex();
+
+        li {
+            gap: 20px;
+
+            .nav-enlace {
+                padding: 10px;
+                text-decoration: none;
+                font-size: $small-font-size;
+                color: $text-color;
+            }
+        }
+    }
+}
+
+@media (max-width: 724px) {
+    header {
+        margin: 3%;
+
+        .menu-hamburguer {
+            display: block;
+            button{
+                border: none;
+                background: transparent;
+            }   
+            button:hover{
+                cursor: pointer;
+            } 
+        }
+
+        .menu {
+            display: none;
+        }
+    }
+}
+
+
+main {
+    padding: 3% 15%;
+    @include flex();
+
+    .izq {
+        @include flex(column, center, flex-start);
+        padding: 3% 5% 5% 0;
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 3%;
+        }
+
+        p {
+            margin-bottom: 10%;
+        }
+
+        .btns-getit{
+            @include flex(row, flex-start, center);
+            width: 80%;
+            gap: 5%;
+        }
+    }
+
+}
+
+@media (max-width: 724px) {
+    main {
+        flex-wrap: wrap;
+        text-align: center;
+        padding: 3%;
+
+        .izq {
+            order: 1;
+            padding: 0;
+            @include flex(column, center, center);
+            
+            h1 {
+                font-size: 2rem;
+            }
+            .btns-getit{
+                @include flex();
+                width: 100%;
+                gap: 5%;
+            }
+        }
+    }
+
+    .der img{
+        max-width: 100%;
+        display: block;
+        overflow-x: hidden;
+    }
+}
+
+
+.features {
+    padding: 3% 15%;
+    .tabs {
+        text-align: center;
+        
+        .radio-selector{
+            @include flex();
+            margin: 3% 15%;
+            gap: 1%;
+        }
+    
+        input {
+            display: none;
+        }
+    
+        .tab-link {
+            width: 30%;
+           padding: 15px 20px;
+            color: $light-gray;
+            border-bottom: 1px solid $light-gray;
+            &:hover {
+                color: $secondary-color;
+                cursor: pointer;
+            }
+        }
+    
+        #tab1:checked ~ .radio-selector .tab-link[for="tab1"],
+        #tab2:checked ~ .radio-selector .tab-link[for="tab2"],
+        #tab3:checked ~ .radio-selector .tab-link[for="tab3"] {
+            color: $text-color;
+            font-weight: bold;
+            border-bottom: 3px solid $secondary-color;
+        }
+    
+        .tab-content {
+            display: none;
+        }
+    
+        #tab1:checked ~ .content #content1,
+        #tab2:checked ~ .content #content2,
+        #tab3:checked ~ .content #content3 {
+            display: block;
+            @include flex();
+            padding: 3% 5%;
+            .der-ft{
+                @include flex(column, center, flex-start);
+                margin: 3% 12%;
+                text-align: left;
+            }
+        }
+    }
+}
+
+@media (max-width: 724px){
+    .features{
+        padding: 3%;
+        .radio-selector{
+            flex-wrap: wrap;
+            .tab-link{
+                width: 100%;
+            }
+        }
+        .tab-content{
+            flex-wrap: wrap;
+            padding: 0;
+            img {
+                max-width: 100%;
+                display: block;
+                overflow-x: hidden;
+            }
+            .der-ft{
+                h2{
+                    align-self: center;
+                }
+                p{
+                    text-align: center;
+                }
+                button{
+                    display: none;
+                }
+            } 
+        }
+    }
+}
+
+.download{
+    padding: 3% 15%;
+    .container-columnas{
+        @include flex();
+        margin: 5% auto;
+        width: 75%;
+        height: 470px;
+
+        .columna{
+            padding: 5% 3% 3% 3%;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 20px #c5c2c2;
+            width: 30%;
+            box-sizing: border-box;
+    
+            img[alt="bg-dots"] {
+                display: block;
+                margin: 7% auto;
+                width: 100%;
+            }
+        }
+        .chrome{
+            align-self: flex-start;
+        }
+        .firefox{
+            align-self: center;
+        }
+        .opera{
+            align-self: flex-end;
+        }
+    }
+}
+
+@media (max-width: 724px) {
+    .download{
+        padding: 3%;
+
+        .container-columnas {
+            width: 80%;
+            height: 100%;
+            flex-wrap: wrap; 
+    
+            .columna {    
+                width: 90%;
+                margin-top: 10%;
+
+                button{
+                    width: 90%;
+                }
+            }
+        }
+    }
+}
+
+.FAQs {
+    padding: 3% 15%;
+
+    ul {
+        flex-direction: column;
+        list-style: none;
+        margin: 7% 0;
+        padding: 0;
+
+        li {
+            @include flex(row, space-between, center);
+            padding: 3%;
+            border-bottom: 1px solid #ddd;
+        }
+    }
+}
+
+@media (max-width: 724px) {
+    .FAQs{
+        padding: 3%;
+    }
+}
+
+.last-section {
+    background: $primary-color;
+    color: $white;
+    width: 100%;
+    
+    .last-section-content {
+        padding: 5% 10%;
+
+        input {
+            border-radius: 3px;
+            padding: 0.6rem 0.7rem;
+            font-size: $small-font-size;
+            border: none;
+            color: #F8FAFC;
+        }
+    }
+}
+
+
+footer {
+    @include flex(row, space-between, center);
+    padding: 2% 15%;
+    background-color: $dark-bg;
+
+    .left-footer{
+        @include flex(row, space-around, center);
+        gap: 10%;
+
+        .footer-nav{
+            @include flex(row, space-around, center);
+
+            .foot-enlace {
+                text-decoration: none;
+                color: $white;
+                font-size: $small-font-size;
+                margin-right: 10%;
+            }
+        }
+    }
+    .fb-logo {
+        padding-right: 15px;
+    }
+}
+
+@media (max-width: 724px){
+    footer{
+        @include flex(column, center, center);
+        @include font-size-responsive();
+
+        .left-footer{
+            @include flex(column, center, center);
+            margin: 5% 0;
+
+            .footer-nav{
+                @include flex(column, center, center);
+        
+                .foot-enlace{
+                    margin-top: 20%;
+                }
+            }
+        }
+    }
+}
