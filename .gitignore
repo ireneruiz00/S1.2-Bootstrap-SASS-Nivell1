@@ -1,0 +1,17 @@
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+
+node_modules/
+package-lock.json
+yarn.lock
+
+*.css.map
+*.css
+
+dist/
+build/
+
+*.log
