@@ -1,0 +1,131 @@
+$primary-color: #5265E1; 
+$secondary-color: #FA5959;
+$white-smoke: #f7f7f7;
+$dark-color: #242a45;
+$light-gray: #9194a2;
+$accordion-icon-color: $primary-color;
+$accordion-icon-active-color: $secondary-color;
+
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4,
+  7: $spacer * 5,
+  8: $spacer * 6,
+  9: $spacer * 7,
+  10: $spacer * 10,
+  11: $spacer * 20,
+  12: $spacer * 60,
+  13: $spacer * 90,
+);
+
+$theme-colors: (
+  "primary": $primary-color,
+  "secondary": $secondary-color,
+  "whitesmoke": $white-smoke,
+  "dark": $dark-color,
+  "light": $light-gray,
+);
+
+@import "./node_modules/bootstrap/scss/bootstrap.scss";
+
+@mixin btn-primary-hover {
+  background: white;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  color: $dark-color;
+}
+
+p{
+  font-size: 20px;
+  color: $light-gray;
+}
+
+.btn-primary:hover{
+  @include btn-primary-hover();
+}
+
+.navbar {
+  
+  .nav-link {
+    color: $dark-color;
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .btn {
+    color: white;
+    border-radius: 5px;
+    &:hover {
+      background: white;
+      color: $secondary-color;
+      border: 1px solid $secondary-color;
+    }
+  }
+}
+
+.hero {
+  text-align: center;
+  .btn {
+    border-radius: 3px;
+    &-whitesmoke:hover {
+      background: white;
+      color: $dark-color;
+      border: 1px solid $dark-color;
+    }
+  }
+}
+
+.nav-tabs {
+  .nav-link {
+      color: $light-gray; 
+      font-weight: bold;
+      border-bottom: 1px solid $light-gray;
+      &:hover {
+          color: $secondary-color;
+      }
+      &.active {
+          border-bottom: 3px solid $secondary-color;
+          color: $dark-color;
+      }
+  }
+}
+
+.row.custom-height {
+  height: 70vh;
+}
+.card {
+  border-radius: 10px;
+  text-align: center;
+}
+
+.accordion{
+  button.accordion-button{
+    color: $dark-color;
+    font-size: 20px;
+    &:hover{
+      color: $secondary-color;
+    }
+    &:not(.collapsed){
+      background: white;
+      border: none;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+  .accordion-body{
+    font-size: 18px;
+  }
+}
